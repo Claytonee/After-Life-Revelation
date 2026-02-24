@@ -4,65 +4,98 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Henoko & Lazaro — Simulizi + Ufafanuzi (Design ya Kisasa)</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
   <style>
-
-
-/* Inaficha kila kitu kwenye screen kubwa (zaidi ya 480px) */
-@media screen and (min-width: 481px) {
-    main { 
-        display: none !important; 
+    /* 1. Usahihishaji wa Msingi */
+    *{box-sizing:border-box}
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      background: #000; /* Inahakikisha background ni nyeusi tupu */
     }
-    body {
-        background: #050711 !important;
-        display: flex !important;
-        align-items: center;
+
+    /* 2. MUUNDO WA DESKTOP (Inazuia isifunguke kwenye kompyuta) */
+    @media screen and (min-width: 901px) {
+      main { display: none !important; }
+      body::before {
+        content: "⚠️ MAUDHUI YA SIRI: Tafadhali tumia SIMU (Mobile) pekee kusoma simulizi hii.";
+        display: flex;
         justify-content: center;
+        align-items: center;
         height: 100vh;
-        margin: 0;
-    }
-    body::after {
-        content: "⚠️ MAUDHUI HAYA NI KWA AJILI YA SIMU PEKEE. Tafadhali fungua link hii kwenye simu yako ili kusoma.";
         color: #ffd700;
         font-family: 'Cinzel', serif;
-        font-weight: bold;
         text-align: center;
-        padding: 40px;
-        border: 2px solid #ffd700;
-        max-width: 80%;
-        border-radius: 15px;
-    }
-    /* Inaficha pia floating buttons kwenye desktop */
-    #backToTop, #waChatIcon, #waChatBox { display: none !important; }
-}
-
-
-
-
-
-
-
-    /* Prevent horizontal overflow and ensure responsive sizing */
-    *{box-sizing:border-box}
-    html,body{max-width:100%;overflow-x:hidden}
-    main{width:100%}
-
-    /* Mobile constraint: keep content readable and centered */
-    @media (max-width:900px){
-      main{max-width:420px;margin:0 auto;padding:20px 12px 90px}
-      .slider-wrapper{max-width:100%;padding:0 6px;height:auto;min-height:220px}
-      .revelation-slide{padding:20px}
-      .nav-btn.prev{left:8px}
-      .nav-btn.next{right:8px}
-      #waChatBox{left:12px;right:12px;width:calc(100% - 24px);bottom:90px}
-      #waChatIcon{left:18px;bottom:18px}
-      #backToTop{right:18px;bottom:18px}
+        padding: 20px;
+        background: #050505;
+      }
     }
 
-    @media (max-width:420px){
-      .title-gold{font-size:1.2em;letter-spacing:1px}
-      .content-text{font-size:1em}
-      .revelation-slide{padding:14px}
-      .slider-wrapper{min-height:180px}
+    /* 3. MUUNDO WA SIMU (Iliyoboreshwa ijae screen) */
+    @media (max-width: 900px) {
+      main {
+        width: 100% !important;
+        max-width: 100% !important; /* Iliondolewa 420px ili ijae screen */
+        margin: 0 auto !important;
+        padding: 20px 15px 100px !important; /* Padding nzuri ya pembeni */
+      }
+
+      .slider-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        height: auto;
+        min-height: 350px; /* Nafasi ya kutosha kwa maandishi */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .revelation-slide {
+        padding: 35px 25px;
+        width: 100%;
+        border-radius: 20px;
+        /* Muandiko imara/wima */
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .title-gold {
+        font-family: 'Cinzel', serif;
+        font-size: 1.6em !important;
+        letter-spacing: 3px !important;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--glow, #d4af37);
+        text-transform: uppercase;
+      }
+
+      .content-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.15em !important;
+        line-height: 1.8 !important;
+        font-style: normal !important; /* Inazuia mwandiko usilale */
+        color: #e0e0e0;
+      }
+
+      /* Vitufe visizibe content */
+      .nav-btn.prev { left: -5px; z-index: 100; }
+      .nav-btn.next { right: -5px; z-index: 100; }
+
+      #waChatBox { left: 10px; right: 10px; width: calc(100% - 20px); bottom: 85px; }
+      #waChatIcon { left: 18px; bottom: 18px; }
+      #backToTop { right: 18px; bottom: 18px; }
+    }
+
+    /* 4. Kwa simu ndogo sana */
+    @media (max-width: 420px) {
+      .title-gold { font-size: 1.3em !important; letter-spacing: 1px !important; }
+      .content-text { font-size: 1.05em !important; }
+      .slider-wrapper { min-height: 300px; }
+      .revelation-slide { padding: 20px 15px; }
     }
   </style>
 </head>
