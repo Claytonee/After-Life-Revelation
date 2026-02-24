@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Henoko & Lazaro — Simulizi + Ufafanuzi (Design ya Kisasa)</title>
+  <title>Henoko & Lazaro — Simulizi + Ufafanuzi</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
@@ -15,14 +15,14 @@
       overflow-x: hidden;
       margin: 0;
       padding: 0;
-      background: #000; /* Inahakikisha background ni nyeusi tupu */
+      background: #000;
     }
 
-    /* 2. MUUNDO WA DESKTOP (Inazuia isifunguke kwenye kompyuta) */
-    @media screen and (min-width: 901px) {
+    /* 2. DESKTOP ONLY BLOCKING (Zaidi ya 1024px pekee) */
+    @media screen and (min-width: 1025px) {
       main { display: none !important; }
       body::before {
-        content: "⚠️ MAUDHUI YA SIRI: Tafadhali tumia SIMU (Mobile) pekee kusoma simulizi hii.";
+        content: "⚠️ MAUDHUI YA SIRI: Tafadhali tumia SIMU pekee kusoma simulizi hii.";
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,67 +35,107 @@
       }
     }
 
-    /* 3. MUUNDO WA SIMU (Iliyoboreshwa ijae screen) */
-    @media (max-width: 900px) {
+    /* 3. MOBILE & TABLET LAYOUT */
+    @media screen and (max-width: 1024px) {
       main {
         width: 100% !important;
-        max-width: 100% !important; /* Iliondolewa 420px ili ijae screen */
+        max-width: 600px !important; 
         margin: 0 auto !important;
-        padding: 20px 15px 100px !important; /* Padding nzuri ya pembeni */
+        padding: 20px 20px 100px !important;
       }
 
       .slider-wrapper {
+        position: relative;
         width: 100%;
-        max-width: 100%;
-        padding: 0;
-        height: auto;
-        min-height: 350px; /* Nafasi ya kutosha kwa maandishi */
+        min-height: 400px; /* Imeongezwa kidogo kwa usalama wa maandishi */
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: visible !important; /* MUHIMU: Inaruhusu vitufe vilivyo nje kuonekana */
+        margin: 20px 0;
       }
 
       .revelation-slide {
-        padding: 35px 25px;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        padding: 40px 30px;
         border-radius: 20px;
-        /* Muandiko imara/wima */
-        font-family: 'Montserrat', sans-serif;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.8s ease-in-out;
+        transform: scale(0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        z-index: 1;
       }
+
+      .active-slide {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: scale(1) !important;
+        z-index: 10; /* Inakaa chini ya vitufe (z-index 100) */
+        box-shadow: 0 0 30px var(--glow);
+      }
+
+      /* MUUNDO WA VITUFE (Vimefanyiwa marekebisho ya muonekano) */
+      .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100 !important; /* MUHIMU: Inakaa juu ya kila kitu */
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #d4af37;
+        color: #d4af37;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        transition: 0.3s;
+      }
+
+      .nav-btn:active { transform: translateY(-50%) scale(0.9); }
+      
+      /* Vitufe vimevutwa nje kidogo ya kadi ili visionekane vimefunikwa */
+      .prev { left: -15px; } 
+      .next { right: -15px; }
 
       .title-gold {
         font-family: 'Cinzel', serif;
-        font-size: 1.6em !important;
-        letter-spacing: 3px !important;
+        font-size: 1.5em;
         font-weight: bold;
-        margin-bottom: 20px;
-        color: var(--glow, #d4af37);
+        margin-bottom: 15px;
+        color: var(--glow);
         text-transform: uppercase;
+        letter-spacing: 2px;
       }
 
       .content-text {
         font-family: 'Montserrat', sans-serif;
-        font-size: 1.15em !important;
-        line-height: 1.8 !important;
-        font-style: normal !important; /* Inazuia mwandiko usilale */
+        font-size: 1.1em;
+        line-height: 1.7;
         color: #e0e0e0;
       }
-
-      /* Vitufe visizibe content */
-      .nav-btn.prev { left: -5px; z-index: 100; }
-      .nav-btn.next { right: -5px; z-index: 100; }
-
-      #waChatBox { left: 10px; right: 10px; width: calc(100% - 20px); bottom: 85px; }
-      #waChatIcon { left: 18px; bottom: 18px; }
-      #backToTop { right: 18px; bottom: 18px; }
     }
 
-    /* 4. Kwa simu ndogo sana */
-    @media (max-width: 420px) {
-      .title-gold { font-size: 1.3em !important; letter-spacing: 1px !important; }
-      .content-text { font-size: 1.05em !important; }
-      .slider-wrapper { min-height: 300px; }
-      .revelation-slide { padding: 20px 15px; }
+    /* Maalum kwa Landscape (Marekebisho ya Pixel 6a ikilazwa) */
+    @media screen and (max-width: 1024px) and (orientation: landscape) {
+      .slider-wrapper { min-height: 320px; }
+      .nav-btn { width: 40px; height: 40px; font-size: 18px; }
+      .prev { left: -10px; }
+      .next { right: -10px; }
     }
   </style>
 </head>
